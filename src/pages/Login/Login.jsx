@@ -1,18 +1,29 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Login = () => {
 
-    
+    const { signIn } = useContext(AuthContext);
 
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         console.log('clicked');
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password);
+        console.log(email, password);
+
+        signIn(email, password)
+            .then(result=>{
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(err=> console.log(err));
+
+
     }
 
 
@@ -43,7 +54,7 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <input className="btn bg-orange-600 border-none hover:bg-orange-700 text-lg text-white font-bold" type="submit" value="Login" />
                         </div>
-                    <p className='text-center my-4'>New to Car Doctors <Link className='text-orange-600 underline font-bold' to='/signup'>Sign Up</Link></p>
+                        <p className='text-center my-4'>New to Car Doctors <Link className='text-orange-600 underline font-bold' to='/signup'>Sign Up</Link></p>
                     </form>
                 </div>
             </div>
