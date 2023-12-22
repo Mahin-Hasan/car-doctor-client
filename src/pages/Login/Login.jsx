@@ -26,10 +26,14 @@ const Login = () => {
                 console.log(loggedInUser);
                 const user = { email };
                 // navigate(location?.state ? location?.state : '/1');
-                //implement get access tokan
-                axios.post('http://localhost:5000/jwt', user)
+                //implement get access tokan || must add with credentials 
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
+                        //implement navigation via a token fo security purpose
+                        if (res.data.success) {
+                            navigate(location?.state ? location?.state : '/');
+                        }
                     })
 
             })
