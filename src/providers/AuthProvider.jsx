@@ -29,6 +29,8 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             console.log('Current user', currentUser);
             setLoading(false);
+            // handle tokens
+            //if user exists then issue a token
         });
         return () => {
             return unsubscribe();

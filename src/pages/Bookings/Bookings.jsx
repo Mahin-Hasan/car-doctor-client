@@ -65,6 +65,7 @@ const Bookings = () => {
 
     return (
         <div>
+            <h1>Line added from desktop</h1>
             <h1 className="text-5xl">Your Bookings: {bookings.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
